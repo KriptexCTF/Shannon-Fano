@@ -94,6 +94,7 @@ while(len(new_arr) != len(A)):
 	new_arr = create_new(new_arr)
 for i in koding_arr:
 	print(i)
+print("__ENCODE__")
 string = input("=> ")
 output = ""
 for i in string:
