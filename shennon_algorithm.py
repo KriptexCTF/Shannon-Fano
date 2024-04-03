@@ -6,16 +6,21 @@ def test_B(B):
 	if(summ != 1):
 		print(f"Error B array\nsumm == {summ/10}")
 		exit()
-def find_k(matrix):
+def find_k(matrix1):
+	help_B = []
+	for i in matrix1:
+		for j in sorted_pairs:
+			if(i == j[0]):
+				help_B.append(j[1])	
 	k = 0
-	if(len(matrix) == 1):
+	if(len(matrix1) == 2):
 		return 0
-	for i in range(1, len(matrix[0])):
+	for i in range(1, len(matrix1)):
 		summ1, summ2 = 0, 0
 		for j in range(0, i):
-			summ1 += matrix[1][j]*10
-		for q in range(i, len(matrix[0])):
-			summ2 += matrix[1][q]*10
+			summ1 += help_B[j]*10
+		for q in range(i, len(matrix1)):
+			summ2 += help_B[q]*10
 		if(i == 1):
 			minimum = abs(summ1 - summ2)
 			k = 0
@@ -59,22 +64,30 @@ def create_new(last_arr):
 		else:
 			new_arr.append(i)
 	return(new_arr)
+#---------------------------Kriptex
 print("Алгоритм Шенона для:")
 #A = ['a', 'b', 'c', 'd', 'e'] #Алфавит А
 #B = [0.3, 0.2, 0.2, 0.2, 0.1] #Вероятности появления символов
 A = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','_']
 B = [0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.09]
-#A = ['a','b','c']
-#B = [0.5, 0.25, 0.25]
+#A = ['a','b','c','d','e','f','g']
+#B = [0.05,0.2,0.2,0.125,0.125,0.05,0.25]
 #---------------------------Kriptex
 if(len(A) != len(B)):
 	print("len A != len B")
 	exit()
 test_B(B)
+pairs = list(zip(A, B))
+# Сортируем пары по значениям из массива B
+sorted_pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
 print(f"A - {A}\nB - {B}\n")
+A = []
+B = []
+for i in sorted_pairs:
+	A.append(i[0])
+	B.append(i[1])
 koding_arr = create_koding_arr(A)
-matrix = [A, B]
-k = find_k(matrix)
+k = find_k(A)
 add_kodding(k, A)
 new_arr = split_arr_k(A, k)
 while(len(new_arr) != len(A)):
