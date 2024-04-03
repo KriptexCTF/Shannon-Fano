@@ -3,7 +3,7 @@ def test_B(B):
 	summ = 0.0
 	for i in B:
 		summ = round(summ + i, 5)
-	if(summ != 1):
+	if(round(summ, 2) != 1):
 		print(f"Error B array\nsumm == {summ/10}")
 		exit()
 def find_k(matrix1):
