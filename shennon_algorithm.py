@@ -1,8 +1,9 @@
+#Kriptex
 def test_B(B):
 	summ = 0.0
 	for i in B:
-		summ += i * 10
-	if(summ != 10):
+		summ = round(summ + i, 5)
+	if(summ != 1):
 		print(f"Error B array\nsumm == {summ/10}")
 		exit()
 def find_k(matrix):
@@ -61,11 +62,14 @@ def create_new(last_arr):
 print("Алгоритм Шенона для:")
 #A = ['a', 'b', 'c', 'd', 'e'] #Алфавит А
 #B = [0.3, 0.2, 0.2, 0.2, 0.1] #Вероятности появления символов
-A = ['k','d','c','g','h','b','e','x','t','j']
-B = [0.045,0.01,0.1,0.5,0.1,0.02,0.1,0.015,0.01,0.1]
+A = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','_']
+B = [0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.035,0.09]
 #A = ['a','b','c']
 #B = [0.5, 0.25, 0.25]
-#---------------------------
+#---------------------------Kriptex
+if(len(A) != len(B)):
+	print("len A != len B")
+	exit()
 test_B(B)
 print(f"A - {A}\nB - {B}\n")
 koding_arr = create_koding_arr(A)
@@ -77,3 +81,20 @@ while(len(new_arr) != len(A)):
 	new_arr = create_new(new_arr)
 for i in koding_arr:
 	print(i)
+string = input("=> ")
+output = ""
+for i in string:
+	for j in koding_arr:
+		if(i == j[0]):
+			output += j[1]
+print(output)
+print("__DECODE__")
+string = input("=> ")
+decode_str = ""
+while(string != ""):
+	for i in koding_arr:
+		len_kod = len(i[1])
+		if(string[:len_kod] == i[1]):
+			string = string[len_kod:]
+			decode_str += i[0]
+print(decode_str)
